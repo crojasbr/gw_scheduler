@@ -19,13 +19,14 @@ def main():
 	parser.add_argument("-a", "--now", help="Start Now -- True or False")
 	parser.add_argument("-b", "--start", help="Desired Start Time in the format of HHMM")
 	parser.add_argument("-c", "--end", help="Desired End Time in the format of HHMM")
+	parser.add_argument("-A", "--asap", action='store_true', default=False)
 	args = parser.parse_args()
 
 	file_name = args.file
 	obs_date = args.date
 	observatory_telescopes = args.obstele.split(",")
 	preview_plot = args.plot
-	
+
 	obs_keys = [o.split(":")[0] for o in observatory_telescopes]
 	tele_keys = [t.split(":")[1] for t in observatory_telescopes]
 
@@ -33,6 +34,7 @@ def main():
 	startTime = args.start
 	endTime = args.end
 
+	asap = args.asap
 
 	lco = Observatory(
 		name="LCO",
@@ -131,7 +133,7 @@ def main():
 
 
 	for i in range(len(observatory_telescopes)):
-		
+
 		targets = []
 		obs = observatories[obs_keys[i]]
 
@@ -157,14 +159,14 @@ def main():
 
 			targets.append(
 				Target(
-					name=names[j], 
-					coord=coords[j], 
-					priority=priorities[j], 
-					target_type=target_type, 
-					observatory_lat=obs.ephemeris.lat, 
-					sidereal_radian_array=obs.sidereal_radian_array, 
-					disc_date=disc_date, 
-					apparent_mag=disc_mags[j], 
+					name=names[j],
+					coord=coords[j],
+					priority=priorities[j],
+					target_type=target_type,
+					observatory_lat=obs.ephemeris.lat,
+					sidereal_radian_array=obs.sidereal_radian_array,
+					disc_date=disc_date,
+					apparent_mag=disc_mags[j],
 					obs_date=obs.obs_date
 				)
 			)
@@ -175,11 +177,10 @@ def main():
 		print("First %s target: %s" % (tele_keys[i], targets[0].name))
 		print("Last %s target: %s" % (tele_keys[i], targets[-1].name))
 
-		obs.schedule_targets(tele_keys[i], preview_plot)
+		obs.schedule_targets(tele_keys[i], preview_plot, asap)
 
 	if preview_plot:
 		exit = input("\n\nENTER to exit")
 
 if __name__ == "__main__": main()
 
-		
