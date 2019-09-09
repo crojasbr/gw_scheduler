@@ -10,7 +10,7 @@ Usage: (python 3)
 
 python master.py --tiles_file example_tiles.txt --date 20190802 --telescope Swope 
 
-Options include: --start HHMM --end HHMM or --now True (UT times)
+Options include: --start HHMM --end HHMM or --now True (UT times); --asap (observe high-priority targets first)
 
 Telescope options: Swope, Thacher, Nickel
 
