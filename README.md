@@ -1,5 +1,5 @@
 # gw_scheduler
-GW Scheduler based on Dave Coulter's SN scheduler
+GW Scheduler based on Dave Coulter's SN scheduler, with help from Tiara Hung, Jay Sarva, Karelle Sielez.
 
 Some dependencies needed: 
 
