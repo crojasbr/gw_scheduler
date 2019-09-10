@@ -73,7 +73,7 @@ print ("***************************")
 
 print ("Creating fields-center formatted file")
 
-convert_scheduler_cmd = 'python convert_scheduler_output_to_GWoutput.py -s {0}_{1}_{2}_GoodSchedule.csv -t {3} -c FC_{2}_{4}.txt'.format(obs[telescope], telescope, date,tiles_file,telescope)
+convert_scheduler_cmd = 'python convert_scheduler_output_to_GWoutput.py -s {0}_{1}_{2}_GoodSchedule.csv -t {3} -c GWSearch_output_{2}_{4}.txt'.format(obs[telescope], telescope, date,tiles_file,telescope)
 os.system(convert_scheduler_cmd)
 os.system('python probs.py -f {0} --telescope {1} --date {2}'.format(tiles_file, telescope, date))
 
