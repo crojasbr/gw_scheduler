@@ -337,16 +337,16 @@ class Nickel(Telescope):
         adj_app_mag = sn.apparent_mag + mag_reduction
 
         # Change S/N depending on phase...
-        s_to_n = 10 # base signal to noise
-        if days_from_disc <= 10:
-            s_to_n = 30
-        elif days_from_disc > 10 and days_from_disc <= 60:
-            s_to_n = 20
+        s_to_n = 25 # base signal to noise
+        #if days_from_disc <= 10:
+        #    s_to_n = 30
+        #elif days_from_disc > 10 and days_from_disc <= 60:
+        #    s_to_n = 20
 
-        r_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.r_prime])
-        i_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.i_prime])
-        V_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.V_band])
-        B_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.B_band])
+        r_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.r_prime], px_in_aperature=20)
+        i_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.i_prime], px_in_aperature=20)
+        V_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.V_band], px_in_aperature=20)
+        B_exp = self.time_to_S_N(s_to_n, adj_app_mag, self.filters[Constants.B_band], px_in_aperature=20)
 
         if r_exp <= 600:
             exposures.update({Constants.r_prime: self.round_to_num(Constants.round_to, r_exp)})
